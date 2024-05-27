@@ -1,0 +1,33 @@
+<br>
+<script>
+    function send_card_id(cardId) {
+        fetch('/deckbuilder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'card_id=' + encodeURIComponent(cardId),
+        })
+    }
+</script>
+<form method="POST" action="{{ url_for('game') }}">
+    <input type="hidden" name="lobby_id" value=" {{ lobby.id }}">
+    <table>
+        <tr>
+            <td>
+                <h3>Lobby użytkownika {{ lobby.host_name }}</h3>
+            </td>
+            <td>
+                {% if lobby.joiner_id != "None" %}
+                <h2>
+                    <input type="submit" value="Dołącz" style="font-size: 2vw;">
+                </h2>
+                {% else %}
+                <h2>
+                    Lobby zajęte
+                </h2>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</form>

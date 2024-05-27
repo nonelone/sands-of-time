@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sus!
+{% endblock %}
+{% block body %}
+<br>
+<h3 class="mainText" style="text-align: center;">Witaj {{ current_user.name }}!</h3>
+<br>
+
+{% if deck_done %}
+<h2 class="button" onclick="{window.location.href = '/vs_ai'}">
+  Graj!
+</h2>
+{% else %}
+<h2 class="button" style="background-color: gray;">
+  Stwórz deck aby grać!
+</h2>
+{% endif %}
+  {% for card in card_list %}
+    {% include 'card_widget.html' %}
+  {% endfor %}
+
+<h3 class="button" onclick="{window.location.href = '/logout'}">
+  Wylogowywanie
+</h3>
+
+{% endblock %}
+

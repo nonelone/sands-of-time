@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}
+SoT: {{ player_data.name }} vs {{ enemy_data.name }}
+{% endblock %}
+{% block body %}
+<div style="color: greenyellow;">ID: {{ lobby.id }}
+                <br>
+                {{ player_data.name }} vs {{ enemy_data.name }}
+</div>
+<br>
+<div class="mainText"  style="padding: 0%; width: 80%">
+{% if player_data != None and  enemy_data != None %}
+
+<br>
+<table>
+    <tr>
+        <td>
+            HP:<br>
+            {{ enemy_data['hp'] }}
+        </td>
+        <td>
+            DECK:<br>
+            {{ enemy_data['deck']|length + 1}}
+        </td>
+    </tr>
+    <tr style="background-color: red;">
+        <td>
+
+        </td>
+        <td>
+            PLACE #1
+        </td>
+        <td>
+            PLACE #2
+        </td>
+        <td>
+            PLACE #3
+        </td>
+        <td>
+            PLACE #4
+        </td>
+        <td>
+            PLACE #5
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr style="background-color: green;">
+        <td>
+        </td>
+        <td>
+            PLACE #1
+        </td>
+        <td>
+            PLACE #2
+        </td>
+        <td>
+            PLACE #3
+        </td>
+        <td>
+            PLACE #4
+        </td>
+        <td>
+            PLACE #5
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            HP:<br>
+            {{ player_data['hp'] }}
+        </td>
+        {% for card in player_data['hand'] %}
+            {% include 'game_card_widget.html' %}
+        {% endfor %}
+        <td>
+            DECK:<br>
+            {{ player_data['deck']|length + 1}}
+        </td>
+    </tr>
+</table>
+ <br>
+{% else %}
+<br>
+    <h3 style="text-align: center;">Oczekiwanie na kolejnego gracza</h3>
+<br>
+{% endif %}
+</div>
+{% endblock %}

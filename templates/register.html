@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+Rejestracja
+{% endblock %}
+{% block body %}   
+<br><br>
+<div class="mainText">
+    <h1 style="text-align: center;">Zarejestruj się!</h1>
+    <form method="POST" action="{{ url_for('register') }}">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" name="username" required>
+        <label for="password">Hasło:</label>
+        <input type="password" name="password" required>
+        <input type="submit" value="Rejestruj">
+    </form>
+</div>
+<br><br>
+{% endblock %}

@@ -1,0 +1,41 @@
+<br>
+<script>
+    function send_card_id(cardId) {
+        fetch('/deckbuilder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'card_id=' + encodeURIComponent(cardId),
+        })
+    }
+</script>
+<div class="card-widget" onclick="send_card_id('{{ card.id }}')" style="border: 3px solid {% if card.used %} green {% else %} yellow {% endif %}">
+    <table>
+        <tr>
+            <td>
+                <h3>{{ card.name }}</h3>
+            </td>
+            <td>
+                <p>Cost: {{ card.cost }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="width: 100%; height:100%; overflow: hidden;">
+                    <img src="{{ url_for('static', filename='images/' + card.image) }}" alt="{{ card.name }} Image" style="width:100%; height:100%; object-fit: cover; border: 1px solid purple;">
+                </div>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Attack: {{ card.attack }}</p>
+            </td>
+            <td>
+                <p>Defence: {{ card.defence }}</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>

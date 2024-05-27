@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Lobby
+{% endblock %}
+{% block body %}
+<script>
+  function create_lobby(user_id) {
+      fetch('/lobby', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'user_id=' + encodeURIComponent(user_id),
+      })
+  }
+</script>
+<br>
+<div class="mainText">
+  <h3 style="text-align: center;">Witaj {{ current_user.name }}!</h3>
+    {% for lobby in lobby_list %}
+      {% include 'lobby_widget.html' %}
+    {% endfor %}
+  <br>
+  <h4 class="button" onclick="create_lobby('{{ current_user.id }}')">
+    Utwórz lobby
+  </h4>
+</div>
+{% endblock %}

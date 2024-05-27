@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Strona Główna{% endblock %}
+{% block body %}
+
+<br><br><br><br>
+<div class="mainText">
+    Witaj w "Sands Of Time", grze karcianej stylu deck-builder inspirowanej Hearthstone!
+</div>
+<br><br><br><br>
+<div class="mainText">
+    Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik Opis mechanik
+    <br>
+    <img src="{{ url_for('static', filename='images/strona.png')}}">
+</div>
+
+<br><br><br><br>
+
+<h1 class="button" onclick="{window.location.href = '/login'}">
+    Join the game!
+</h1>
+<br><br><br><br>
+<div class="mainText">
+    <h2 style="text-align: center;">
+        Sala chwały:
+    </h2><br>
+    <table>
+        <tr>
+            <th>Nick</th>
+            <th>Wynik</th>
+          </tr>
+          {% for score in highscore %}
+          <tr>
+            <td>
+                {{ score.name }}
+            </td>
+            <td>
+                {{ score.score }}
+            </td>
+          </tr>
+          {% endfor %}
+    </table><br><br>
+    <h2 style="text-align: center;">
+        Sala chały:
+    </h2><br>
+    <table>
+        <tr>
+            <th>Nick</th>
+            <th>Wynik</th>
+          </tr>
+          {% for score in lowscore %}
+          <tr>
+            <td>
+                {{ score.name }}
+            </td>
+            <td>
+                {{ score.score }}
+            </td>
+          </tr>
+          {% endfor %}
+    </table>
+</div>
+<br><br><br><br>
+{% endblock %}

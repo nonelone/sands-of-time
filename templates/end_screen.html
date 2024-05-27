@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if result == 'win' %}
+        Zwycięstwo!
+    {% else %}
+        Przegrana :(
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="mainText">
+<br>
+    {% if result == 'vino' %}
+        <h3  style="text-align: center;">Gratulujemy zwycięstwa, {{ current_user.name }}!</h3>
+    {% else %}
+    <h3  style="text-align: center;">Nie poddawaj się!, {{ current_user.name }}! Jeszcze wygrasz!</h3>
+    {% endif %}
+<br>
+</div>
+    <br>
+    <h3 class="button" onclick="{window.location.href = '/deckbuilder'}">
+        Powrót do gry!
+      </h3>
+{% endblock %}

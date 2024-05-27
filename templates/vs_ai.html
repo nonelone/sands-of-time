@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}
+SoT: {{ game.player.name }} vs AI
+{% endblock %}
+{% block body %}
+{{ game.player.name }} vs AI
+<br>
+<div class="mainText"  style="padding: 0%; width: 80%">
+{% if game.player != None %}
+<br>
+<table>
+    <tr>
+        <td>
+            HP:<br>
+            {{ game.ai.hp }}
+            MANA:<br>
+            {{ game.ai.mana }}
+        </td>
+        </td>
+    </td>
+    {% for i in [0, 1, 2, 3, 4] %}
+        {% if i < game.ai.hand|length %}
+            <td>
+                <h1>?</h1>
+            </td>
+        {% else %}
+            <td>
+                <h1> </h1>
+            </td>
+        {% endif %}
+    {% endfor %}
+        </td>
+        <td>
+            DECK:<br>
+            {{ game.ai.deck|length}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <div style="background-color: red;">
+            {% for card in game.ai.cards_on_table %}
+            {% include 'game_card_widget.html' %}
+            {% endfor %}
+        </div>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <div  style="background-color: green;">
+            {% for card in game.player.cards_on_table %}
+            {% include 'game_card_widget.html' %}
+            {% endfor %}
+        <td>
+        </div>
+        </td>
+    </tr>
+    <tr style="max-height: 5%;">
+        <td>
+            HP:<br>
+            {{ game.player.hp }}
+            MANA:<br>
+            {{ game.player.mana }}
+        </td>
+        
+            {% for card in game.player.hand %}
+                {% include 'game_card_widget.html' %}
+            </div>
+            {% endfor %}
+        
+        <td>
+            DECK:<br>
+            {{ game.player.deck|length}}
+        </td>
+    </tr>
+</table>
+<table style="border: none;">
+    <tr>
+        <td>
+            <form method="POST" action="{{ url_for('vs_ai') }}">
+                <input type="hidden" name="state" value="end">
+                    <h2>
+                        <input type="submit" value="Poddaj walkę" style="font-size: 2vw;">
+                    </h2>
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="{{ url_for('vs_ai') }}">
+                <input type="hidden" name="turn" value="endturn">
+                    <h2>
+                        <input type="submit" value="Koniec tury" style="font-size: 2vw;">
+                    </h2>
+            </form>
+        </td>
+    </tr>
+</table>
+{% else %}
+<br>
+    <h3 style="text-align: center;">Oczekiwanie na kolejnego gracza</h3>
+<br>
+{% endif %}
+</div>
+{% endblock %}
